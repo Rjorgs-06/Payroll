@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 05:32 AM
+-- Generation Time: Aug 30, 2024 at 03:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,18 +52,45 @@ CREATE TABLE `employee` (
   `id` int(20) NOT NULL,
   `employee_no` varchar(100) NOT NULL,
   `fullname` varchar(20) NOT NULL,
-  `position` varchar(255) NOT NULL
+  `position` varchar(255) NOT NULL,
+  `monthly_salary` decimal(10,2) DEFAULT NULL,
+  `pera` decimal(10,2) DEFAULT NULL,
+  `gross_amount_earned` decimal(10,2) DEFAULT NULL,
+  `pagibig_gs` decimal(10,2) DEFAULT NULL,
+  `pagibig_mp3` decimal(10,2) DEFAULT NULL,
+  `gsis_ps` decimal(10,2) DEFAULT NULL,
+  `gsis_gs` decimal(10,2) DEFAULT NULL,
+  `sif` decimal(10,2) DEFAULT NULL,
+  `philhealth_ps` decimal(10,2) DEFAULT NULL,
+  `philhealth_gs` decimal(10,2) DEFAULT NULL,
+  `withholding_tax` decimal(10,2) DEFAULT NULL,
+  `prg` decimal(10,2) DEFAULT NULL,
+  `cnl` decimal(10,2) DEFAULT NULL,
+  `eml` decimal(10,2) DEFAULT NULL,
+  `mpl` decimal(10,2) DEFAULT NULL,
+  `gfal` decimal(10,2) DEFAULT NULL,
+  `cpl` decimal(10,2) DEFAULT NULL,
+  `help` decimal(10,2) DEFAULT NULL,
+  `cfi` decimal(10,2) DEFAULT NULL,
+  `csb` decimal(10,2) DEFAULT NULL,
+  `disallowance_fd` decimal(10,2) DEFAULT NULL,
+  `total_deductions` decimal(10,2) DEFAULT NULL,
+  `net_salary` decimal(10,2) DEFAULT NULL,
+  `net_received1` decimal(10,2) DEFAULT NULL,
+  `net_received2` decimal(10,2) DEFAULT NULL,
+  `employee_signature2` varchar(255) DEFAULT NULL,
+  `employee_signature1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `employee_no`, `fullname`, `position`) VALUES
-(54, '2024-1369', 'Radgie Lopez', 'instructor 2'),
-(55, '2024-9781', 'Jerson Aballa', 'instructor 1'),
-(56, '2024-5674', 'Eugine Abejar', 'instructor 1'),
-(57, '2024-3611', 'Veronica Cristobal', 'instructor 2');
+INSERT INTO `employee` (`id`, `employee_no`, `fullname`, `position`, `monthly_salary`, `pera`, `gross_amount_earned`, `pagibig_gs`, `pagibig_mp3`, `gsis_ps`, `gsis_gs`, `sif`, `philhealth_ps`, `philhealth_gs`, `withholding_tax`, `prg`, `cnl`, `eml`, `mpl`, `gfal`, `cpl`, `help`, `cfi`, `csb`, `disallowance_fd`, `total_deductions`, `net_salary`, `net_received1`, `net_received2`, `employee_signature2`, `employee_signature1`) VALUES
+(54, '2024-1369', 'Radgie Lopez', 'Instructor 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(55, '2024-9781', 'Jerson Aballa', 'Instructor 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(57, '2024-3611', 'Veronica Cristobal', 'Instructor 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(69, '2024-5414', 'Jomar Berdejo', 'Department Head', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +148,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
 (6, 'Matthew', 'qwerty', 'qwerty', 'employee'),
 (7, 'admin', 'admin', 'admin123', 'admin'),
-(8, 'matthew', 'matthew', 'mat123', 'employee');
+(8, 'Veronica C. Solar', 'mato', 'mat123', '');
 
 -- --------------------------------------------------------
 
@@ -131,27 +158,43 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
 
 CREATE TABLE `wages` (
   `id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `no_of_hours` varchar(255) NOT NULL,
-  `rate_per_hour` varchar(255) NOT NULL,
-  `undertime` varchar(255) DEFAULT NULL,
-  `overtime` varchar(255) DEFAULT NULL,
-  `grand_total` varchar(255) NOT NULL,
-  `tax_percentage` varchar(255) NOT NULL,
-  `withholding_tax` varchar(255) NOT NULL,
-  `net_amount_due` varchar(255) NOT NULL,
-  `remarks` date NOT NULL
+  `pera` int(255) DEFAULT NULL,
+  `gross_amount_earned,` int(255) DEFAULT NULL,
+  `pagibig_ps,` int(255) NOT NULL,
+  `pagibig_gs,` int(255) NOT NULL,
+  `pagibig_mp3,` int(255) NOT NULL,
+  `gsis_ps` int(11) NOT NULL,
+  `gsis_gs` int(11) NOT NULL,
+  `sif` int(255) NOT NULL,
+  `philhealth_ps` int(255) NOT NULL,
+  `philhealth_gs` int(255) NOT NULL,
+  `withholding_tax` int(255) NOT NULL,
+  `prg` int(255) NOT NULL,
+  `employee.cnl` int(255) NOT NULL,
+  `employee.eml` int(255) NOT NULL,
+  `employee.mpl` int(255) NOT NULL,
+  `employee.gfal` int(255) NOT NULL,
+  `employee.cpl` int(255) NOT NULL,
+  `employee.help` int(255) NOT NULL,
+  `employee.cfi` int(255) NOT NULL,
+  `employee.csb` int(255) NOT NULL,
+  `employee.disallowance_fd` int(255) NOT NULL,
+  `employee.total_deductions` int(255) NOT NULL,
+  `employee.net_salary` int(255) NOT NULL,
+  `employee.net_received_15` int(255) NOT NULL,
+  `employee.net_received_16_31` int(255) NOT NULL,
+  `employee_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `wages`
 --
 
-INSERT INTO `wages` (`id`, `employee_id`, `no_of_hours`, `rate_per_hour`, `undertime`, `overtime`, `grand_total`, `tax_percentage`, `withholding_tax`, `net_amount_due`, `remarks`) VALUES
-(8, 56, '120', '200', '0', '0', '400', '10', '40', '360', '2024-08-20'),
-(9, 55, '180', '205', '0', '0', '615', '15', '92.25', '522.75', '2024-08-20'),
-(10, 54, '300', '500', '0', '0', '2500', '10', '250', '2250', '2024-08-20'),
-(12, 57, '480', '200', '0', '0', '1600', '10', '160', '1440', '2024-08-20');
+INSERT INTO `wages` (`id`, `pera`, `gross_amount_earned,`, `pagibig_ps,`, `pagibig_gs,`, `pagibig_mp3,`, `gsis_ps`, `gsis_gs`, `sif`, `philhealth_ps`, `philhealth_gs`, `withholding_tax`, `prg`, `employee.cnl`, `employee.eml`, `employee.mpl`, `employee.gfal`, `employee.cpl`, `employee.help`, `employee.cfi`, `employee.csb`, `employee.disallowance_fd`, `employee.total_deductions`, `employee.net_salary`, `employee.net_received_15`, `employee.net_received_16_31`, `employee_id`) VALUES
+(8, 0, 0, 400, 10, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 360, 20240820, 0, NULL),
+(9, 0, 0, 615, 15, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 522, 20240820, 0, NULL),
+(10, 0, 0, 2500, 10, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2250, 20240820, 0, NULL),
+(12, 0, 0, 1600, 10, 160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1440, 20240820, 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -194,7 +237,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wages`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `employee_id` (`employee_id`);
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `fk_employee` (`employee_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -210,7 +254,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `payroll_items`
@@ -251,7 +295,7 @@ ALTER TABLE `payroll_items`
 -- Constraints for table `wages`
 --
 ALTER TABLE `wages`
-  ADD CONSTRAINT `wages_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
