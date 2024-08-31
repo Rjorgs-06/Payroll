@@ -15,7 +15,7 @@
                         <th>Employee ID</th>
                         <th>Monthly Salary</th>
                         <th>PERA</th>
-                        <th>Gross Amount Earned</th>
+                        <!-- <th>Gross Amount Earned</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -23,17 +23,17 @@
                     <?php
                     $d_arr[0] = "Unset";
                     $p_arr[0] = "Unset";
-                    $employee_qry = $conn->query("SELECT * FROM `employee`");
+                    $employee_qry = $conn->query("SELECT * FROM `employee1`");
                     while ($row = $employee_qry->fetch_array()) {
                     ?>
                         <tr>
 
                             <td><?php echo $row['fullname'] ?></td>
                             <td><?php echo $row['position']; ?></td>
-                            <td><?php echo $row['employee_no'] ?></td>
+                            <td><?php echo $row['employee_id'] ?></td>
                             <td><?php echo $row['monthly_salary'] ?></td>
                             <td><?php echo $row['pera'] ?></td>
-                            <td><?php echo $row['gross_amount_earned'] ?></td>
+
                             <td>
                                 <center>
                                     <!-- <button class="btn btn-sm btn-outline-primary view_employee" data-id="<?php echo $row['id'] ?>" type="button"><i class="fa fa-eye"></i></button> -->

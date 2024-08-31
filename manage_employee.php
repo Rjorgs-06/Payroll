@@ -1,7 +1,7 @@
 <?php
 include 'db_connect.php';
 if (isset($_GET['id'])) {
-    $qry = $conn->query("SELECT * FROM employee where id = " . $_GET['id'])->fetch_array();
+    $qry = $conn->query("SELECT * FROM employee1 where id = " . $_GET['id'])->fetch_array();
     foreach ($qry as $k => $v) {
         $$k = $v;
     }
@@ -39,14 +39,14 @@ if (isset($_GET['id'])) {
 </div>
 <script>
     // $('[name="department_id"]').change(function() {
-    // 	var did = $(this).val()
-    // 	$('[name="position_id"] .opt').each(function() {
-    // 		if ($(this).attr('data-did') == did) {
-    // 			$(this).attr('disabled', false)
-    // 		} else {
-    // 			$(this).attr('disabled', true)
-    // 		}
-    // 	})
+    //  var did = $(this).val()
+    //  $('[name="position_id"] .opt').each(function() {
+    //      if ($(this).attr('data-did') == did) {
+    //          $(this).attr('disabled', false)
+    //      } else {
+    //          $(this).attr('disabled', true)
+    //      }
+    //  })
     // })
     $(document).ready(function() {
         $('.select2').select2({
