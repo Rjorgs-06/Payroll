@@ -1,9 +1,9 @@
 <?php
 include 'db_connect.php';
 if (isset($_GET['id'])) {
-    $qry = $conn->query("SELECT * FROM employee1 where id = " . $_GET['id'])->fetch_array();
-    foreach ($qry as $k => $v) {
-        $$k = $v;
+    $user = $conn->query("SELECT * FROM employee1 where id =" . $_GET['id']);
+    foreach ($user->fetch_array() as $k => $v) {
+        $meta[$k] = $v;
     }
 }
 ?>
@@ -11,43 +11,28 @@ if (isset($_GET['id'])) {
     <form id='employee_frm'>
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : "" ?>" />
         <div class="form-group">
-            <label>Fullname</label>
-            <input type="text" name="fullname" required="required" class="form-control"
-                value="<?php echo isset($fullname) ? $fullname : "" ?>" />
+            <label for="fullname">Fullname</label>
+            <input type="text" name="fullname" id="fullname" class="form-control" value="<?php echo isset($meta['fullname']) ? $meta['fullname'] : '' ?>" required>
         </div>
         <div class="form-group">
-            <label>Position</label>
-            <input type="text" name="position" required="required" class="form-control"
-                value="<?php echo isset($position) ? $position : "" ?>" />
+            <label for="position">Position</label>
+            <input type="text" name="position" id="position" class="form-control" value="<?php echo isset($meta['position']) ? $meta['position'] : '' ?>" required>
         </div>
         <div class="form-group">
-            <label>Employee ID</label>
-            <input type="text" name="employee_id" required="required" class="form-control"
-                value="<?php echo isset($employee_id) ? $employee_id : "" ?>" />
+            <label for="employee_id">Employee ID</label>
+            <input type="text" name="employee_id" id="employee_id" class="form-control" value="<?php echo isset($meta['employee_id']) ? $meta['employee_id'] : '' ?>" required>
         </div>
         <div class="form-group">
-            <label>Monthly Salary</label>
-            <input type="text" name="monthly_salary" required="required" class="form-control"
-                value="<?php echo isset($monthly_salary) ? $monthly_salary : "" ?>" />
+            <label for="monthly_salary">Monthly Salary</label>
+            <input type="text" name="monthly_salary" id="monthly_salary" class="form-control" value="<?php echo isset($meta['monthly_salary']) ? $meta['monthly_salary'] : '' ?>" required>
         </div>
         <div class="form-group">
-            <label>PERA</label>
-            <input type="text" name="pera" required="required" class="form-control"
-                value="<?php echo isset($pera) ? $pera : "" ?>" />
+            <label for="pera">PERA</label>
+            <input type="text" name="pera" id="pera" class="form-control" value="<?php echo isset($meta['pera']) ? $meta['pera'] : '' ?>" required>
         </div>
     </form>
 </div>
 <script>
-    // $('[name="department_id"]').change(function() {
-    //  var did = $(this).val()
-    //  $('[name="position_id"] .opt').each(function() {
-    //      if ($(this).attr('data-did') == did) {
-    //          $(this).attr('disabled', false)
-    //      } else {
-    //          $(this).attr('disabled', true)
-    //      }
-    //  })
-    // })
     $(document).ready(function() {
         $('.select2').select2({
             placeholder: "Please Select Here",
@@ -58,7 +43,7 @@ if (isset($_GET['id'])) {
             start_load();
             $.ajax({
                 url: 'ajax.php?action=save_employee',
-                method: "POST",
+                method: 'POST',
                 data: $(this).serialize(),
                 error: err => console.log(),
                 success: function(resp) {
@@ -68,6 +53,8 @@ if (isset($_GET['id'])) {
                             location.reload();
 
                         }, 1000)
+                    } else {
+                        alert_toast("Employee's data failed")
                     }
                 }
             })
