@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 30, 2024 at 03:10 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Sep 01, 2024 at 08:17 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,15 +82,28 @@ CREATE TABLE `employee` (
   `employee_signature1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `employee`
+-- Table structure for table `employee1`
 --
 
-INSERT INTO `employee` (`id`, `employee_no`, `fullname`, `position`, `monthly_salary`, `pera`, `gross_amount_earned`, `pagibig_gs`, `pagibig_mp3`, `gsis_ps`, `gsis_gs`, `sif`, `philhealth_ps`, `philhealth_gs`, `withholding_tax`, `prg`, `cnl`, `eml`, `mpl`, `gfal`, `cpl`, `help`, `cfi`, `csb`, `disallowance_fd`, `total_deductions`, `net_salary`, `net_received1`, `net_received2`, `employee_signature2`, `employee_signature1`) VALUES
-(54, '2024-1369', 'Radgie Lopez', 'Instructor 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(55, '2024-9781', 'Jerson Aballa', 'Instructor 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(57, '2024-3611', 'Veronica Cristobal', 'Instructor 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(69, '2024-5414', 'Jomar Berdejo', 'Department Head', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+CREATE TABLE `employee1` (
+  `id` int(30) NOT NULL,
+  `fullname` varchar(20) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `employee_id` varchar(100) NOT NULL,
+  `monthly_salary` varchar(100) NOT NULL,
+  `pera` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee1`
+--
+
+INSERT INTO `employee1` (`id`, `fullname`, `position`, `employee_id`, `monthly_salary`, `pera`) VALUES
+(7, 'Vincent Obejera', 'Faculty1', '1', '1', '1'),
+(8, 'Vincent Obejera', 'Faculty11', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -148,7 +161,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
 (6, 'Matthew', 'qwerty', 'qwerty', 'employee'),
 (7, 'admin', 'admin', 'admin123', 'admin'),
-(8, 'Veronica C. Solar', 'mato', 'mat123', '');
+(8, 'Veronica C. Solar', 'mato', 'mat123', ''),
+(9, 'John', 'John', '123', 'admin'),
+(10, 'DOE', 'DOE', '123', 'admin'),
+(11, '1', '1', '1', 'admin');
 
 -- --------------------------------------------------------
 
@@ -187,16 +203,6 @@ CREATE TABLE `wages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `wages`
---
-
-INSERT INTO `wages` (`id`, `pera`, `gross_amount_earned,`, `pagibig_ps,`, `pagibig_gs,`, `pagibig_mp3,`, `gsis_ps`, `gsis_gs`, `sif`, `philhealth_ps`, `philhealth_gs`, `withholding_tax`, `prg`, `employee.cnl`, `employee.eml`, `employee.mpl`, `employee.gfal`, `employee.cpl`, `employee.help`, `employee.cfi`, `employee.csb`, `employee.disallowance_fd`, `employee.total_deductions`, `employee.net_salary`, `employee.net_received_15`, `employee.net_received_16_31`, `employee_id`) VALUES
-(8, 0, 0, 400, 10, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 360, 20240820, 0, NULL),
-(9, 0, 0, 615, 15, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 522, 20240820, 0, NULL),
-(10, 0, 0, 2500, 10, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2250, 20240820, 0, NULL),
-(12, 0, 0, 1600, 10, 160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1440, 20240820, 0, NULL);
-
---
 -- Indexes for dumped tables
 --
 
@@ -210,6 +216,12 @@ ALTER TABLE `department`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employee1`
+--
+ALTER TABLE `employee1`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -257,6 +269,12 @@ ALTER TABLE `employee`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
+-- AUTO_INCREMENT for table `employee1`
+--
+ALTER TABLE `employee1`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `payroll_items`
 --
 ALTER TABLE `payroll_items`
@@ -272,7 +290,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `wages`

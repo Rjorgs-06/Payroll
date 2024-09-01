@@ -101,13 +101,19 @@ class Action
 		$data .= ", username = '$username' ";
 		$data .= ", password = '$password' ";
 		$data .= ", type  = '$type' ";
+
 		if (empty($id)) {
-			$save = $this->db->query("INSERT INTO users set " . $data);
+			// Insert a new record
+			$save = $this->db->query("INSERT INTO users SET " . $data);
 		} else {
-			$save = $this->db->query("UPDATE users set " . $data . " where id = " . $id);
+			// Update an existing record based on the provided id
+			$save = $this->db->query("UPDATE users SET " . $data . " WHERE id = " . intval($id));
 		}
+
 		if ($save) {
-			return 1;
+			return 1; // Success
+		} else {
+			return 0; // Failure
 		}
 	}
 	function signup()
@@ -177,23 +183,10 @@ class Action
 		$data .= ", employee_id='$employee_id' ";
 		$data .= ", monthly_salary='$monthly_salary' ";
 		$data .= ", pera='$pera' ";
-		// $data .= ", salary='$salary' ";
-
 		if (empty($id)) {
-			$i = 1;
-			while ($i == 1) {
-				$e_num = date('Y') . '-' . mt_rand(1, 9999);
-				$chk = $this->db->query("SELECT * FROM employee where employee_no = '$e_num' ")->num_rows;
-				if ($chk <= 0) {
-					$i = 0;
-				}
-			}
-			$data .= ", employee_no='$e_num' ";
-			$save = $this->db->query("INSERT INTO employee set " . $data);
-			$employee_id = $this->db->insert_id;
+			$save = $this->db->query(" INSERT INTO employee1 set " . $data);
 		} else {
-			$save = $this->db->query("UPDATE employee set " . $data . " where id=" . $id);
-			$employee_id = $id;
+			$save = $this->db->query(" UPDATE employee1 set " . $data . " where id = " . $id);
 		}
 		if ($save) {
 			return 1;
@@ -204,7 +197,7 @@ class Action
 	{
 		extract($_POST);
 
-		$delete = $this->db->query("DELETE FROM employee where id = '$id'");
+		$delete = $this->db->query("DELETE FROM employee1 where id = '$id'");
 		if ($delete)
 			return 1;
 	}
